@@ -5,6 +5,7 @@ import {
   useState,
   type RefObject,
 } from 'react'
+import { flushSync } from 'react-dom'
 import type { LucideIcon } from 'lucide-react'
 import {
   ArrowLeft,
@@ -757,20 +758,30 @@ function App() {
       backgroundAudio.pause()
     }
 
-    setLyricsStatus('loading')
-    setActiveLyrics([])
-    setActiveLyricIndex(-1)
+    flushSync(() => {
+      setLyricsStatus('loading')
+      setActiveLyrics([])
+      setActiveLyricIndex(-1)
+      setActiveSongIndex(index)
+    })
 
-    if (songAudio) {
-      songAudio.pause()
-      if (songAudio.src !== selectedSongSrc) {
-        songAudio.src = selectedSongSrc
-      }
-      songAudio.currentTime = 0
-      void songAudio.play().catch(() => {})
+    if (!songAudio) {
+      return
     }
 
-    setActiveSongIndex(index)
+    songAudio.pause()
+
+    const selectedSongUrl = new URL(selectedSongSrc, window.location.href).href
+
+    if (
+      songAudio.currentSrc !== selectedSongUrl &&
+      songAudio.src !== selectedSongUrl
+    ) {
+      songAudio.src = selectedSongSrc
+    }
+
+    songAudio.currentTime = 0
+    void songAudio.play().catch(() => {})
   }
 
   const goToSection = (index: number) => {

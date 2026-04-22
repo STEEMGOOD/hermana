@@ -700,6 +700,7 @@
   border-radius: 18px;
   background: rgba(255, 252, 247, 0.78);
   text-align: left;
+  touch-action: manipulation;
 }
 
 .song-selector.is-active {
