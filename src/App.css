@@ -936,11 +936,24 @@
   }
 
   .memory-card:nth-child(4) .memory-card__image-wrap {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: auto;
   }
 
   .memory-card__image-wrap {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: auto;
+    max-height: none;
+  }
+
+  .memory-card img {
+    display: block;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: center top;
+  }
+
+  .memory-card:hover img {
+    transform: none;
   }
 
   .lyrics-panel {

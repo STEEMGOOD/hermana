@@ -529,7 +529,8 @@ function MusicPanel({
               ref={songAudioRef}
               className="song-player"
               controls
-              preload="metadata"
+              preload="auto"
+              playsInline
               src={resolvePublicAssetPath(activeSong.src)}
               onLoadedMetadata={onSongTimeUpdate}
               onPlay={onSongPlay}
@@ -750,6 +751,7 @@ function App() {
     const selectedSong = siteContent.favoriteSongs[index]
     const backgroundAudio = audioRef.current
     const songAudio = songAudioRef.current
+    const selectedSongSrc = resolvePublicAssetPath(selectedSong.src)
 
     if (backgroundAudio && !backgroundAudio.paused) {
       backgroundAudio.pause()
@@ -761,9 +763,10 @@ function App() {
 
     if (songAudio) {
       songAudio.pause()
-      songAudio.src = resolvePublicAssetPath(selectedSong.src)
+      if (songAudio.src !== selectedSongSrc) {
+        songAudio.src = selectedSongSrc
+      }
       songAudio.currentTime = 0
-      songAudio.load()
       void songAudio.play().catch(() => {})
     }
 
