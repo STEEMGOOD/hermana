@@ -72,6 +72,17 @@ type MusicPanelProps = {
 
 const smoothEase = [0.22, 1, 0.36, 1] as const
 const timestampExpression = /\[(\d{2}):(\d{2})(?:[.:](\d{2,3}))?]/g
+const siteBasePath = import.meta.env.BASE_URL
+
+function resolvePublicAssetPath(path: string) {
+  if (/^(?:https?:)?\/\//.test(path)) {
+    return path
+  }
+
+  const normalizedPath = path.startsWith('/') ? path.slice(1) : path
+
+  return encodeURI(`${siteBasePath}${normalizedPath}`)
+}
 
 const revealUp = {
   hidden: { opacity: 0, y: 28 },
@@ -250,7 +261,7 @@ function MemoryCard({ memory, index }: MemoryCardProps) {
     >
       <div className="memory-card__image-wrap">
         <img
-          src={encodeURI(imageSrc)}
+          src={resolvePublicAssetPath(imageSrc)}
           alt={memory.alt}
           loading="lazy"
           onError={() => {
@@ -519,7 +530,7 @@ function MusicPanel({
               className="song-player"
               controls
               preload="metadata"
-              src={encodeURI(activeSong.src)}
+              src={resolvePublicAssetPath(activeSong.src)}
               onLoadedMetadata={onSongTimeUpdate}
               onPlay={onSongPlay}
               onSeeked={onSongSeeked}
@@ -634,7 +645,7 @@ function App() {
     const activeSong = siteContent.favoriteSongs[activeSongIndex]
     let cancelled = false
 
-    void fetch(encodeURI(activeSong.lyricsFile))
+    void fetch(resolvePublicAssetPath(activeSong.lyricsFile))
       .then((response) => {
         if (!response.ok) {
           throw new Error('missing-lyrics-file')
@@ -750,7 +761,7 @@ function App() {
 
     if (songAudio) {
       songAudio.pause()
-      songAudio.src = encodeURI(selectedSong.src)
+      songAudio.src = resolvePublicAssetPath(selectedSong.src)
       songAudio.currentTime = 0
       songAudio.load()
       void songAudio.play().catch(() => {})
@@ -836,7 +847,10 @@ function App() {
 
   return (
     <div className="page-shell">
-      <audio ref={audioRef} src={encodeURI(siteContent.backgroundSong.src)} />
+      <audio
+        ref={audioRef}
+        src={resolvePublicAssetPath(siteContent.backgroundSong.src)}
+      />
 
       <header className="topbar">
         <button className="brand" type="button" onClick={() => goToSection(0)}>
