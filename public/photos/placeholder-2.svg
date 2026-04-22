@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder foto 2</title>
+  <desc id="desc">Imagen temporal para reemplazar por una foto personal.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#f2e0c7" />
+      <stop offset="100%" stop-color="#cf8a64" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1200" fill="url(#bg)" rx="36" />
+  <rect x="118" y="132" width="664" height="436" rx="32" fill="#fff6ed" fill-opacity=".22" />
+  <rect x="182" y="206" width="536" height="288" rx="24" fill="#fff6ed" fill-opacity=".16" />
+  <circle cx="218" cy="876" r="148" fill="#fff6ed" fill-opacity=".2" />
+  <path d="M0 965c122-66 236-84 342-54s220 79 344 67c94-9 165-49 214-83v305H0z" fill="#9f5339" fill-opacity=".32" />
+  <rect x="78" y="880" width="744" height="214" rx="28" fill="#1f1311" fill-opacity=".26" />
+  <text x="110" y="968" fill="#fff7ef" font-family="Georgia, serif" font-size="74">Foto 02</text>
+  <text x="110" y="1026" fill="#fff7ef" font-family="Arial, sans-serif" font-size="28">
+    Reemplaza este archivo con public/photos/photo-2.jpg
+  </text>
+</svg>

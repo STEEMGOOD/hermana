@@ -1,0 +1,101 @@
+:root {
+  --bg: #f4eadf;
+  --surface: #fff7ef;
+  --card: #fff8f1;
+  --ink-strong: #231714;
+  --ink-soft: #6f5b56;
+  --accent: #c7643b;
+  --line: rgba(62, 35, 25, 0.12);
+  --line-strong: rgba(62, 35, 25, 0.22);
+  --shadow: 0 26px 70px rgba(87, 44, 27, 0.14);
+  --font-body: 'Manrope', sans-serif;
+  --font-display: 'Cormorant Garamond', serif;
+  color: var(--ink-strong);
+  background:
+    radial-gradient(circle at top left, rgba(226, 126, 91, 0.15), transparent 30%),
+    radial-gradient(circle at right 20%, rgba(212, 185, 142, 0.18), transparent 28%),
+    linear-gradient(180deg, #f8eee4 0%, #f4eadf 100%);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 500;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(226, 126, 91, 0.12), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(214, 186, 143, 0.18), transparent 20%),
+    var(--bg);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(rgba(120, 76, 53, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 76, 53, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+section[id] {
+  scroll-margin-top: 110px;
+}
+
+::selection {
+  background: rgba(199, 100, 59, 0.2);
+}
+
+@media (max-width: 760px) {
+  :root {
+    font-size: 16px;
+  }
+}
